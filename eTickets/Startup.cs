@@ -28,6 +28,8 @@ namespace eTickets
             //DbContext Configuration
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer( Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +58,6 @@ namespace eTickets
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
             //Seed Database
             AppDbInitializer.Seed(app);
         }
